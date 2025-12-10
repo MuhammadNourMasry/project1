@@ -1,0 +1,17 @@
+# ملفات الإعدادات والبيانات الحساسة
+/vendor
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/oauth-*.json
+/storage/debugbar/*.json
+/.env
+.env.testing
+/bootstrap/cache/*.php
+
+# ملفات السجل/الـ Logs
+/storage/logs/*.log
+/storage/framework/sessions/*
+/storage/framework/cache/*
+/storage/framework/views/*
