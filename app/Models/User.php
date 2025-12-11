@@ -43,8 +43,10 @@ class User extends Authenticatable
       public function Rating(){
         return $this->hasMany(Rating::class);
      }
+
      public function favoriteApartments()
 {
     return $this->belongsToMany(Apartment::class, 'favorites');
 }
+
 }

@@ -15,7 +15,6 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class ApartmentController extends Controller
 {
-
  public function getAllApartments()
     {
      $apartments = Apartment::with('user:id,first_name,last_name,phone')->get();
@@ -65,7 +64,7 @@ class ApartmentController extends Controller
 {
     $user = Auth::user();
     
-    // التحقق من تسجيل الدخول
+    
     if (!$user) {
         return response()->json([
             'success' => false,
@@ -73,10 +72,9 @@ class ApartmentController extends Controller
         ], 401);
     }
     
-    // التحقق من وجود الشقة
     Apartment::findOrFail($apartmentId);
     
-    // إضافة للمفضلة
+    
     $user->favoriteApartments()->syncWithoutDetaching([$apartmentId]);
     
     return response()->json([
@@ -95,4 +93,5 @@ class ApartmentController extends Controller
          $apartments = Auth::user()->favoriteApartments()->get();
             return response()->json($apartments, 200);
     }
+
 }
