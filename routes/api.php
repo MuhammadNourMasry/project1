@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -11,6 +12,9 @@ Route::get('/user', function (Request $request) {
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 
+
+
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [UserController::class, 'logout']);
 
@@ -18,19 +22,27 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('getApartments', [ApartmentController::class, 'getAllApartments']);
     //! مسارات للمستأجرين فقط (يمكن للمدير أيضاً)
     Route::middleware('role:tenant,admin')->group(function () {
-        Route::post('book', [ApartmentController::class, 'storeBooking']);
-        Route::get('my-bookings', [ApartmentController::class, 'getMyBookings']);//
-        Route::post('bookings/{bookingId}/cancel', [ApartmentController::class, 'cancelBooking']);
-        Route::put('bookings/{bookingId}', [ApartmentController::class, 'updateBooking']);
-        Route::post('check-availability', [ApartmentController::class, 'checkAvailability']);
-        Route::post('storeRating',[ApartmentController::class,'storeRating']);
+        Route::post('book', [BookingController::class, 'storeBooking']);
+        Route::get('my-bookings', [BookingController::class, 'getMyBookings']);//
+        Route::post('bookings/{bookingId}/cancel', [BookingController::class, 'cancelBooking']);
+        Route::put('bookings/{bookingId}', [BookingController::class, 'updateBooking']);
+        Route::post('check-availability', [BookingController::class, 'checkAvailability']);
+        Route::post('storeRating',[BookingController::class,'storeRating']);
+
+        
+Route::post('apartment/{id}/favorite', [ApartmentController::class, 'addToFavorites']);
+Route::delete('apartment/{id}/favorite', [ApartmentController::class, 'removeFromFavorites']);
+Route::get('apartment/favorites', [ApartmentController::class, 'getFavoriteApartments']);
+
     });
     //! مسارات لأصحاب الشقق فقط (يمكن للمدير أيضاً)
     Route::middleware('role:rented,admin')->group(function () {
         Route::post('postApartment', [ApartmentController::class, 'postApartment']);
-        Route::get('ownerBookings', [ApartmentController::class, 'getOwnerBookings']);
-        Route::post('bookings/{bookingId}/approve', [ApartmentController::class, 'approveBooking']);
+        Route::get('ownerBookings', [BookingController::class, 'getOwnerBookings']);
+        Route::post('bookings/{bookingId}/approve', [BookingController::class, 'approveBooking']);
     });
+
+
 
     
     /*

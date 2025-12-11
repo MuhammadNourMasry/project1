@@ -16,4 +16,8 @@ class Apartment extends Model
      public function Rating(){
         return $this->hasMany(Rating::class);
      }
+     public function favoritedByUsers()
+{
+    return $this->belongsToMany(User::class, 'favorites');
+}
 }
