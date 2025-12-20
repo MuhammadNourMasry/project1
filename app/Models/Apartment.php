@@ -1,8 +1,12 @@
 <?php
 namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Apartment extends Model
 {
+     use HasFactory;
      protected $fillable=['site','type','number_of_room','description','price','user_id','city','area'];
      protected $hidden = ['user_id','id'];
     public function user()

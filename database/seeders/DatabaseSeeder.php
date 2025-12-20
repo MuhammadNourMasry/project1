@@ -11,8 +11,11 @@ class DatabaseSeeder extends Seeder
     use WithoutModelEvents;
     public function run(): void
     {
-     $this->call([AdminSeeder::class
-     ,UserSeeder::class
+     $this->call([AdminSeeder::class,
+     UserSeeder::class,
+     ApartmentSeeder::class,
+     BookingSeeder::class,
+     RatingSeeder::class
     ]);
     }
 }
