@@ -14,26 +14,27 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 class ApartmentController extends Controller
 {
- public function getAllApartments()
+    public function getAllApartments()
     {
-     $apartments = Apartment::with('user:id,first_name,last_name,phone')->get();
-      $data = $apartments->map(function($apartment) {
-        return [
-            'id'             =>$apartment->id,
-            'site'           => $apartment->site,
-            'type'           => $apartment->type,
-            'area'           => $apartment->area,
-            'number_of_room' => $apartment->number_of_room,
-            'city'           => $apartment->city,
-            'price'          => $apartment->price,
-            'rating'         =>$apartment->rating,
-            'description'    => $apartment->description,
-            'owner' => [
-                'name'  => $apartment->user->first_name . ' ' . $apartment->user->last_name,
-                'phone' => $apartment->user->phone
-            ]
-        ];
-    });
+        $apartments = Apartment::with('user:id,first_name,last_name,phone')->get();
+        $data = $apartments->map(function ($apartment) {
+            return [
+                'id'             => $apartment->id,
+                'site'           => $apartment->site,
+                'type'           => $apartment->type,
+                'area'           => $apartment->area,
+                'number_of_room' => $apartment->number_of_room,
+                'city'           => $apartment->city,
+                'price'          => $apartment->price,
+                'rating'         => $apartment->rating,
+                'description'    => $apartment->description,
+                'image'          => $apartment->image,
+                'owner' => [
+                    'name'  => $apartment->user->first_name . ' ' . $apartment->user->last_name,
+                    'phone' => $apartment->user->phone
+                ]
+            ];
+        });
      return response()->json($data,200);
     }
     public function postApartment(StoreApartmentRequest $request)
