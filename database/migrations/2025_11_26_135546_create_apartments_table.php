@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('number_of_room');
             $table->string('description');
             $table->boolean('favorite')->nullable()->default(false);
+            $table->enum('rating',[1,2,3,4,5]);
+            $table->string('image');
             $table->integer('price');
             $table->timestamps();
         });

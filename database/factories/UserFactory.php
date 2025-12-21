@@ -5,22 +5,33 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
     protected static ?string $password;
     public function definition(): array
     {
+         $images = [
+        'images/users/1.jpg',
+        'images/users/2.jpg',
+        'images/users/3.jpg',
+        'images/users/5.jpg',
+        'images/users/5.jpg',
+        'images/users/6.jpg',
+        'images/users/7.jpg',
+        'images/users/8.jpg',
+        'images/users/9.jpg',
+        'images/users/10.jpg',
+        'images/users/11.jpg',
+        'images/users/12.jpg',
+        'images/users/13.jpg',
+    ];
         return [
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'phone'=>fake()->unique()->numerify('##########'),
             'date_of_birth'=>fake()->date('Y-m-d'),
             'photo_of_personal_ID'=>'default_id.jpg',
-            'personal_photo'=>'default_personal.jpg',
+            'personal_photo'=> fake()->randomElement($images),
             'role' => fake()->randomElement(['tenant', 'rented']),
             'email' =>fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -28,10 +39,6 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [

@@ -24,13 +24,14 @@ class StoreApartmentRequest extends FormRequest
           'number_of_room'=>'required|integer|min:1|max:10',
           'city'=>'required|string',
           'price'=>'required|integer',
+          'image'=>'required|image|mimes:png,jpg,jpeg|max:20048',
           'description'=>'required|string'
         ];
     }
         else
         {
             return [
-                
+
             ];
         }
     }

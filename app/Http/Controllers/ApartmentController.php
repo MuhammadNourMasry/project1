@@ -8,11 +8,10 @@ use App\Models\Apartment;
 use App\Models\Booking;
 use App\Models\Rating;
 use App\Services\BookingService;
-use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
-
 class ApartmentController extends Controller
 {
  public function getAllApartments()
@@ -20,12 +19,14 @@ class ApartmentController extends Controller
      $apartments = Apartment::with('user:id,first_name,last_name,phone')->get();
       $data = $apartments->map(function($apartment) {
         return [
+            'id'             =>$apartment->id,
             'site'           => $apartment->site,
             'type'           => $apartment->type,
             'area'           => $apartment->area,
             'number_of_room' => $apartment->number_of_room,
             'city'           => $apartment->city,
             'price'          => $apartment->price,
+            'rating'         =>$apartment->rating,
             'description'    => $apartment->description,
             'owner' => [
                 'name'  => $apartment->user->first_name . ' ' . $apartment->user->last_name,
@@ -40,58 +41,48 @@ class ApartmentController extends Controller
         $user = Auth::user();
         $validated = $request->validated();
         $validated['user_id'] = $user->id;
+        $path1=null;
+        if ($request->hasFile('image')) {
+            $path1 = $request->file('image')->store('imageApartment', 'public');
+            $data['image'] = $path1;
+        }
         $apartment = Apartment::create($validated);
-        /*$user_id=Auth::user()->id;
-        $firstName=Auth::user()->first_name;
-        $lastName=Auth::user()->last_name;
-        $numberPhone=Auth::user()->phone;
-        $validateData=$request->validated();
-        $validateData['user_id']=$user_id;
-        $validateData['owner']=$firstName.' '.$lastName;
-        $validateData['owner_phone']=$numberPhone;
-        $bulid=Apartment::create($validateData);
-        return response()->json($bulid,201);*/
         return response()->json([
-            'owner'=>[
-            'name'=>$user->first_name . ' ' . $user->last_name,
-            'phone'=>$user->phone
+            'owner' => [
+                'name' => $user->first_name . ' ' . $user->last_name,
+                'phone' => $user->phone
             ],
-            'apartment'=>$apartment
-        ],201);
+            'apartment' => $apartment
+        ], 201);
     }
-    
-     public function addToFavorites($apartmentId)
-{
-    $user = Auth::user();
-    
-    
-    if (!$user) {
+
+    public function addToFavorites($apartmentId)
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized. Please login first.'
+            ], 401);
+        }
+        Apartment::findOrFail($apartmentId);
+        $user->favoriteApartments()->syncWithoutDetaching([$apartmentId]);
+
         return response()->json([
-            'success' => false,
-            'message' => 'Unauthorized. Please login first.'
-        ], 401);
+            'success' => true,
+            'message' => 'Apartment added to favorites'
+        ], 200);
     }
-    
-    Apartment::findOrFail($apartmentId);
-    
-    
-    $user->favoriteApartments()->syncWithoutDetaching([$apartmentId]);
-    
-    return response()->json([
-        'success' => true,
-        'message' => 'Apartment added to favorites'
-    ], 200);
-}
-      public function removeFromFavorites($apartmentId)
+    public function removeFromFavorites($apartmentId)
     {
-            Apartment::findOrFail($apartmentId);
-           Auth::user()->favoriteApartments()->detach($apartmentId);
-            return response()->json(['message' => 'Apartment removed from favorites'], 200);
+        Apartment::findOrFail($apartmentId);
+        Auth::user()->favoriteApartments()->detach($apartmentId);
+        return response()->json(['message' => 'Apartment removed from favorites'], 200);
     }
-     public function getFavoriteApartments()
+    public function getFavoriteApartments()
     {
-         $apartments = Auth::user()->favoriteApartments()->get();
-            return response()->json($apartments, 200);
+        $apartments = Auth::user()->favoriteApartments()->get();
+        return response()->json($apartments, 200);
     }
 
 }

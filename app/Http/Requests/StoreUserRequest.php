@@ -23,8 +23,8 @@ class StoreUserRequest extends FormRequest
         'email'=>'required|unique:users,email|ends_with:@gmail.com',
         'bio'=>'nullable|string|max:500',
         'role'=>'required|in:tenant,rented',
-        'personal_photo'=>'required|image|mimes:png,jpg,jpeg|max:2048',
-        'photo_of_personal_ID'=>'required|image|mimes:png,jpg,jpeg|max:2048',
+        'personal_photo'=>'required|image|mimes:png,jpg,jpeg|max:20048',
+        'photo_of_personal_ID'=>'required|image|mimes:png,jpg,jpeg|max:20048',
         'password' =>[
                       'required',
                       'string',
