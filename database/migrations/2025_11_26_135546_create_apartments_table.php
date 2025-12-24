@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('rating',[1,2,3,4,5]);
             $table->string('image');
             $table->integer('price');
+             $table->string('governorate')->nullable();
             $table->timestamps();
         });
     }

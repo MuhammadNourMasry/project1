@@ -13,12 +13,11 @@ Route::get('/user', function (Request $request) {
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
-
 Route::middleware('auth:sanctum')->group(function () {
 
     //! مسارات مشتركة للجميع
     Route::get('getApartments', [ApartmentController::class, 'getAllApartments']);
-
+    
     //! مسارات للمستأجرين فقط (المدير أيضاً مسموح)
     Route::middleware('role:tenant,admin')->group(function () {
 
@@ -28,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('bookings/{bookingId}', [BookingController::class, 'updateBooking']);
         Route::post('check-availability', [BookingController::class, 'checkAvailability']);
         Route::post('storeRating', [BookingController::class, 'storeRating']);
-
+        Route::get('filterApartments', [ApartmentController::class, 'filterApartments']);
         Route::post('apartment/{id}/favorite', [ApartmentController::class, 'addToFavorites']);
         Route::delete('apartment/{id}/favorite', [ApartmentController::class, 'removeFromFavorites']);
         Route::get('apartment/favorites', [ApartmentController::class, 'getFavoriteApartments']);

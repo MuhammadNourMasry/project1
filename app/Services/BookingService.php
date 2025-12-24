@@ -169,4 +169,8 @@ class BookingService
         }
         return count($overlappingBookings);
     }
+
+
+
+
 }
