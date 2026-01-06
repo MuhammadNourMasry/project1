@@ -1,0 +1,65 @@
+.user-management{
+    width: 900px;
+    height: 750px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    background: #fff;
+    border-radius: 12px;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.users-table thead th {
+    position: sticky;
+    top : 0;
+    background-color: #3babf6;
+    z-index: 1;
+    text-align: left;
+    padding: 14px 10px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.click-photo {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.users-table td {
+    padding: 14px 10px;
+    border-top: 1px solid #e5e7eb;
+    color: #4b5563;
+}
+
+.delete {
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+button.delete {
+    background-image: url('/storage/icons/bin.svg');
+}
+
+button.delete:hover {
+    transition: background-image 0.2s ease;
+    background-image: url('/storage/icons/binhover.svg');
+}

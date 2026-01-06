@@ -25,4 +25,10 @@ class Apartment extends Model
 {
     return $this->belongsToMany(User::class, 'favorites');
 }
+
+    public function scopeCreatedBetween($query, $from, $to) {
+        return $query
+            ->where('created_at', '>=', $from)
+            ->where('created_at', '<',  $to);
+    }
 }

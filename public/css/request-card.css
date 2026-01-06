@@ -1,0 +1,206 @@
+.request-card {
+    box-sizing: border-box;
+
+    width: 400px;
+    height: 230px;
+    /* margin: 20px; */
+    padding: 20px 24px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap : 10px;
+
+    border: solid 1px  #e6e6e6;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.25s ease;
+}
+
+.request-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.role {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 17px;
+    color: rgb(72, 68, 68);
+    border: 1px solid;
+    border-radius: 16px;
+}
+
+.rented {
+    background-color: #ffd48a;
+    border-color: #ffa200;
+}
+
+.tenant {
+    background-color: #8AEFFF;
+    border-color: #00D0FF;
+}
+
+.user-profile {
+    width: 100%;
+    display: flex;
+    align-items: end;
+    gap:15px;
+}
+
+.click-photo {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.name {
+    color: rgb(69, 63, 56);
+    font-family: 'Inter', sans-serif;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.user-details {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+    color: #858585;
+    font-weight:600;
+}
+
+.property {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 30px;
+}
+/*
+.property img {
+    width: 16px;
+    height: 16px;
+} */
+
+.id-card {
+    color: rgb(16, 140, 255);
+    font-weight:600;
+}
+
+.Acceptance-status {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Acceptance-status form {
+  display: inline-block;
+  margin: 0;
+}
+
+.Acceptance-status{
+    display:flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.Acceptance-status form{
+    flex: 1;
+    margin: 0;
+}
+
+.button-style {
+    width: 100%;
+    height: 30px;
+    border:none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.button-style:active {
+    transform: scale(0.97);
+}
+
+.approve {
+    background-color: rgb(77, 207, 22);
+}
+
+.approve:active {
+    background-color: rgb(49, 160, 2);
+}
+
+.reject {
+    background-color: rgb(255, 66, 66);
+}
+
+.reject:active {
+    background-color: rgb(224, 4, 4);
+}
+
+
+/* ====== PHOTO MODAL (NO JS) ====== */
+.photo-modal{
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.photo-modal:target{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photo-modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: block;
+}
+
+.photo-modal__content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  opacity: 0;
+  transition: transform .2s ease, opacity .2s ease;
+  max-width: min(520px, 90vw);
+  max-height: 80vh;
+}
+
+.photo-modal:target .photo-modal__content{
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.photo-modal__content img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+/* تحسين بسيط للرابط الدائري */
+.click-photo{
+  display: inline-block;
+}

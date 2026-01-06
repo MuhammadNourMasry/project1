@@ -18,6 +18,7 @@ class User extends Authenticatable
         'email',
         'date_of_birth',
         'role',
+        'is_approved',
         'photo_of_personal_ID',
         'personal_photo',
     ];
@@ -48,5 +49,33 @@ class User extends Authenticatable
 {
     return $this->belongsToMany(Apartment::class, 'favorites');
 }
+
+
+        public function scopeNonAdmin($query) {
+        return $query->where('role', '!=', 'admin');
+    }
+
+    public function scopeApproved($query) {
+        return $query->where('is_approved', 1);
+    }
+    public function scopePending($query) {
+        return $query->where('is_approved', 0);
+    }
+
+    public function scopeCreatedBetween($query, $from, $to) {
+        return $query
+            ->where('created_at', '>=', $from)
+            ->where('created_at', '<',  $to);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isApproved(): bool
+    {
+        return (int) $this->is_approved === 1;
+    }
 
 }

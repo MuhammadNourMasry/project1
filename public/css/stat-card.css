@@ -1,0 +1,133 @@
+.stat-card {
+    width: 350px;
+    height: 150px;
+    padding: 20px 24px;
+    background-color: rgb(255, 255, 255);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.stat-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stat-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #62656c;
+    margin: 0;
+}
+
+.stat-value {
+    font-size: 25px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    color: #222;
+    display: block;
+}
+
+.stat-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* .ratio {
+    color: rgb(0, 198, 46);
+} */
+
+.drowpdown{
+    position: relative;
+    width: 125px;
+    font-weight: 500;
+    font-family: system-ui;
+}
+
+.selected{
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06);
+}
+
+.selected::-webkit-details-marker{ display:none; }
+
+.drowpdown[open] .selected {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.chev{
+    transition: transform .15s ease;
+    font-size: 14px;
+    opacity: .7;
+}
+.dd[open] .dd__chev{ transform: rotate(180deg); }
+
+.options{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+
+    border: 1px solid #e5e7eb;
+    border-top: 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+
+    overflow: hidden;
+    z-index: 10;
+}
+
+
+.range{
+    display: block;
+    padding: 7px 12px;
+    text-decoration: none;
+    color: #111827;
+}
+
+.range:hover{
+    background: #f3f4f6;
+}
+
+.range.is-active{
+    pointer-events: none;
+    color: #3babf6;
+    background: #eff6ff;
+    position: relative;
+}
+
+.range.is-active::before{
+    content:"";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #3babf6;
+}

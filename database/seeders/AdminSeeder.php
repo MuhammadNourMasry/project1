@@ -21,6 +21,7 @@ class AdminSeeder extends Seeder
         'photo_of_personal_ID' => 'admin_photo.png',
         'personal_photo' => 'admin_photo.png',
         'role' => 'admin',
+        'is_approved' => true,
         'email' => 'admin@gmail.com',
         'email_verified_at' => now(),
         'password' => 'oubai123@JABER',

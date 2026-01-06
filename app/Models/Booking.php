@@ -25,5 +25,14 @@ class Booking extends Model
      public function Rating(){
         return $this->hasOne(Rating::class);
      }
-    
+
+    public function scopeCompleted() {
+        return Booking::where('status', 'approved');
+    }
+
+    public function scopeCreatedBetween($query, $from, $to) {
+        return $query
+            ->where('created_at', '>=', $from)
+            ->where('created_at', '<',  $to);
+    }
 }

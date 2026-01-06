@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('personal_photo');
             $table->string('photo_of_personal_ID');
             $table->enum('role',['tenant','rented','admin']);
+            $table->boolean('is_approved')->default(false);
             $table->text('bio')->nullable();
             $table->rememberToken();
             $table->timestamps();
