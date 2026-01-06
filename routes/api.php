@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -40,7 +41,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('ownerBookings', [BookingController::class, 'getOwnerBookings']);
         Route::post('bookings/{bookingId}/approve', [BookingController::class, 'approveBooking']);
     });
-
+       Route::prefix('messages')->group(function () {
+        Route::post('start', [MessageController::class, 'startConversation']);
+        Route::post('send', [MessageController::class, 'sendMessage']);
+        Route::get('conversations', [MessageController::class, 'getConversations']);
+        Route::get('conversations/{conversationId}', [MessageController::class, 'getMessages']);
+       Route::get('unread-count', [MessageController::class, 'getUnreadCount']);
+        Route::delete('conversations/{conversationId}', [MessageController::class, 'deleteConversation']);
+        Route::get('search', [MessageController::class, 'searchMessages']);
+        });
+    
 });
 
 /*
@@ -50,3 +60,4 @@ Route::middleware('role:admin')->group(function () {
     Route::delete('removeUser', [UserController::class, 'deleteUser']);
 });
 */
+// Messaging routes
