@@ -1,0 +1,90 @@
+.side-bar {
+
+    width: 350px;
+    /* height: 100%; */
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    border-right: 1px solid #dcdcdc;
+    background: rgb(255, 255, 255);
+}
+
+.logo-app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    padding: 12px 0px 12px 30px;
+    text-decoration: none;
+    color: #444;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+.nav-btn a {
+    padding: 12px 0px 12px 30px;
+    text-decoration: none;
+    color: #353535;
+    font-weight: 600;
+}
+
+.nav-btn:hover {
+    background: #f3f6ff;
+    color: #e8efff;
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+.active {
+    background: #f3f6ff;
+    font-weight: 600;
+    border-left: 4px solid #3babf6;
+    user-select: none;
+}
+
+.active a {
+    color: #3babf6;
+}
+
+.logout-form{
+  margin-top: auto;  /* هاي اللي بتنزل الزر لتحت */
+  padding: 16px 15px; /* نفس padding السايدبار */
+}
+
+.logout-btn{
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ffd0d0;
+  border-radius: 10px;
+  background: #fff1f1;
+  color: #c62828;
+  font-family: Poppins, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.logout-btn:hover{
+  transform: scale(1.03);
+  background: #ffe0e0;
+  border-color: #ffb3b3;
+}
+
+.logout-btn:active{
+  transform: scale(0.98);
+}

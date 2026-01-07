@@ -55,6 +55,8 @@ class ApartmentFactory extends Factory
         $site =fake()->randomElement($areasByCity[$city]);
         return [
         'user_id'=> User::factory(),
+        'created_at' => fake()->dateTimeBetween('-90 days', 'now'),
+        'updated_at' => fake()->dateTimeBetween('created_at'),
         'site' => $site,
         'city' => $city,
         'area'=>fake()->numberBetween(40,200),

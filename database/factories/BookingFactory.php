@@ -24,6 +24,8 @@ class BookingFactory extends Factory
             'check_in'=>fake()->date('Y-m-d'),
             'check_out'=>fake()->date('Y-m-d'),
             'status'=>fake()->randomElement(['pending', 'approved', 'rejected', 'cancelled','end']),
+            'created_at' => fake()->dateTimeBetween('-90 days', 'now'),
+            'updated_at' => fake()->dateTimeBetween('created_at'),
         ];
     }
 }

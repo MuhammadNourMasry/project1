@@ -1,0 +1,13 @@
+.registration-requests {
+    box-sizing: border-box;
+    padding: 20px;
+    height: 750px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(3, 1fr); */
+    gap: 10px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    background: #f0f0f0;
+    border-radius: 12px;
+}
